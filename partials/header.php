@@ -1,75 +1,65 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Time Machine</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
+<div class="container">
+<nav class="navbar navbar-expand-lg">
+    <p class="title">Time Machine</p>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <div class="navbar-nav mr-auto">
+        </div>
+          <span class="navbar-text" style="color: black">
+              <p class="time">Philippine Standard Time | <span class="date" id="time"></span> | <?php echo date('l | F d, Y'); ?></p>
+          </span>
+    </div>
+</nav>
+</div>
       <?php
-
-      if (isset($_SESSION['current_user'])){
-        echo '
-          <li class="nav-item">
-            <a class="nav-link" href="./home.php">Home</a>
-          </li>
-        ';
-      }
-
+        if (isset($_SESSION['current_user'])){
+          echo '
+            <li class="nav-item">
+              <a class="nav-link" href="./home.php">Home</a>
+            </li>
+          ';
+        }
       ?>
 
-      <div class="container">
-  <ul class="block-menu">
-  </ul>
-  <ul class="block-menu">
-      <li><h5><?php echo date('l | F d, Y'); ?> | Philippine Standard Time | <span class="date" id="time"></span></h5></li><br>
-    <li><a href="/">My Cart</a></li>
-    <li><a href="/demos">Catalog</a></li>
-    <li><a href="/articles">About</a></li>
-      <li><a href="/contact">Log In</a></li>
-      <li><a href="/contact">Register</a></li>
-   </ul>
-
-  </div>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="./cart.php">My Cart</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./catalog.php">Catalog</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./about.php">About</a>
-      </li> -->
       <?php
-
+        if (isset($_SESSION['current_user'])){
+          echo '
+            <ul class="block-menu">
+            <li>
+              <a href="./profile.php">Profile</a>
+            </li>
+            </ul>
+          ';
+        }
+      ?>
+<div class="container2">
+  <ul class="block-menu">
+    <li><a href="./cart.php">My Cart</a></li>
+    <li><a href="./catalog.php">Catalog</a></li>
+    <li><a href="./about.php">About</a></li>
+    <li><?php
       if (isset($_SESSION['current_user'])){
         echo '
-          <li class="nav-item">
-            <a class="nav-link" href="./logout.php">Log Out</a>
+          <ul class="block-menu">
+          <li>
+            <a href="./logout.php">Log Out</a>
           </li>
+          </ul>
         ';
       } else {
         echo '
-          <li class="nav-item">
-            <a class="nav-link" href="./login.php">Log In</a>
+          <ul class="block-menu">
+          <li>
+            <a href="./login.php">Log In</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./register.php">Register</a>
+          <li>
+            <a href="./register.php">Register</a>
           </li>
+          </ul>
         ';
       }
       ?>
 
-      <?php
-
-      if (isset($_SESSION['current_user'])){
-        echo '
-          <li class="nav-item">
-            <a class="nav-link" href="./profile.php">Profile</a>
-          </li>
-        ';
-      }
-      ?>
-    </ul>
-  </div>
+    </li>
+</ul>
+</div>
 </nav>

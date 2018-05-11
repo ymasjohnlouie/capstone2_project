@@ -7,6 +7,9 @@
 
 	<title>Time Machine - <?php getTitle(); ?></title>
 
+	<!-- Imports Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+
 	<!-- Imports Bootstrap stylesheets -->
 	<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap/css/bootstrap.min.css">
 
