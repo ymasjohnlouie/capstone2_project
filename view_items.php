@@ -50,14 +50,11 @@ $items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
 				<div class="card col-md-4" style="width: 18rem;" id="item_table">
 					<img class="card-img-top" src="'.$image_path.'" alt="Card image cap">
 					<div class="card-body">
+						<h5 class="card-title">'.$product_name.'</h5>
 						<div class="col-md-6 offset-md-3">
 						<a href="item.php?id='.$id.'" class="btn btn-primary">View Details</a>
 						</div>
-						<h5 class="card-title">'.$product_name.'</h5>
-						<p class="card-text">'.$description.'</p>
 					</div>
-						<input id="itemQuantity'.$id.'" type="number" value="0" min="0"><br>
-						<button class="btn btn-primary form-control" onclick="addToCart('.$id.')">Add To Cart</button><br>
 				</div>
 			';
 		}

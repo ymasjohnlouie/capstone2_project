@@ -1,8 +1,10 @@
 <?php
 
+session_start();
+
 function getTitle()
 {
-	echo "About Page";
+	echo "Admin Page";
 }
 
 include "./partials/head.php";
@@ -21,7 +23,9 @@ include "./partials/head.php";
 
 	<main class="wrapper">
 
-		<h1>About Page</h1>
+		<?php
+			echo "<h1>Admin Page of " . $_SESSION['current_user'] . "</h1>";
+		?>
 
 	</main>	<!-- /.wrapper -->
 
