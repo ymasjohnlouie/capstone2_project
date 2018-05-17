@@ -15,11 +15,11 @@
     </div>
 </nav>
 </div>
+
 <div class="container2">
   <ul class="block-menu">
-    <li><a href="./cart.php">My Cart</a></li>
+    <!-- <li><a href="./cart.php">My Cart</a></li> -->
     <li><a href="./catalog.php">Catalog</a></li>
-    <li><a href="./about.php">About</a></li>
     <li><?php
       if (isset($_SESSION['current_user'])){
         echo '

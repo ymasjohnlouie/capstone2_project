@@ -46,18 +46,19 @@ include "./partials/head.php";
 </div>
 <div class="container2">
   <ul class="block-menu">
-    <li><a href="./home.php">Home</a></li>
     <li><a href="./cart.php">My Cart</a></li>
-    <li><a href="./profile.php">Profile</a></li>
     <li><a href="./catalog.php">Catalog</a></li>
     <li><a href="./logout.php">Log Out</a></li>
+    <li><a href="profile.php">Profile</a></li>
 </ul>
 </div>
 </nav>
 
 	<main class="wrapper">
 
-	<h1>Profile Page</h1>
+	<?php
+		echo "<h1>Welcome, " .$_SESSION['current_user'] . "</h1>";
+	?>
 
 	<table>
 			<tbody>
@@ -79,7 +80,6 @@ include "./partials/head.php";
 							<th>Email</th>
 							<th>Gender</th>
 							<th>Date of Birth</th>
-							<th colspan = 4>Actions To Do</th>
 						</tr>
 						<tr>
 							<td>'.$first_name.'</td>
@@ -91,10 +91,6 @@ include "./partials/head.php";
 							<td>'.$email.'</td>
 							<td>'.$gender.'</td>
 							<td>'.$date_of_birth.'</td>
-							<td><a href="edit_profile.php" class="btn btn-primary" role="button">Edit Profile</a></td>
-							<td><a href="view_items.php" class="btn btn-primary" role="button">View Items</a></td>
-							<td><a href="view_account.php" class="btn btn-primary" role="button">View User Accounts</a></td>
-							<td><a href="add_item.php" class="btn btn-primary" role="button">Add Item</a></td>
 						</tr>
 			<div class="buttons">
 			</div>
@@ -132,7 +128,7 @@ include "./partials/head.php";
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			        </div>
 			        <div class="modal-body">
-			          <p>Are you sure you want to deactivate your account?</p>
+			          <p>Are you sure you want to deactivate this account?</p>
 			        </div>
 			        <div class="modal-footer">
 			          <a href="deactivate.php" class="btn btn-danger" role="button">Deactivate Profile</a>

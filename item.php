@@ -54,26 +54,20 @@ include "./partials/head.php";
 
 					echo '
 						<tr>
-							<th>Image</th>
+							<th rowspan = 2><img src="'.$image_path.'"></th>
 							<th>Product Name</th>
 							<th>Description</th>
 							<th>Price</th>
 							<th>Brand</th>
-							<th>Button1</th>
-							<th>Button2</th>
 						</tr>
 						<tr>
-							<td><img src="'.$image_path.'" alt=""></td>
 							<td>'.$product_name.'</td>
 							<td>'.$description.'</td>
 							<td>'.$price.'</td>
 							<td>'.$name.'</td>
-							<td><a href="delete_item.php" class="btn btn-primary" role="button">Delete Item</a></td>
-							<td><a href="update_item.php" class="btn btn-primary" role="button">Update Item</a></td>
 						</tr>
 					';
 				}
-
 				?>
 			</tbody>
 		</table>

@@ -41,6 +41,7 @@ h5 {
 
 .carousel-inner > .carousel-item > img {
 	width: 100%;
+	height: 80vh;
 }
 
 .navbar > img {
@@ -99,7 +100,7 @@ p {
 	font-family: 'Passion One', Arial, sans-serif;
 	font-size: 20px;
 	border: 1px solid white;
-	background: linear-gradient(to bottom right, black, white);
+	background: blue;
 	color: white;
 }
 

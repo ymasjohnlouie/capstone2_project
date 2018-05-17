@@ -15,7 +15,12 @@ $gender = $_POST['gender'];
 
 $update_qry = "UPDATE users SET username = '$username', address = '$address', email = '$email', date_of_birth = '$date_of_birth', first_name = '$first_name', last_name = '$last_name', contact_number = '$contact_number', gender = '$gender' WHERE username = '$login_user'";
 $result = mysqli_query($conn, $update_qry);
-header("Location: ./profile.php");
+
+if(($login_user == "johnlouie")){
+		header("Location: ./admin_page.php");
+	} else {
+		header("location: ./profile.php");
+	}
 mysqli_close($conn);
 
 ?>

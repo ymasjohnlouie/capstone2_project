@@ -23,11 +23,35 @@ $items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
 </head>
 <body>
 
-	<?php
-
-	include "./partials/header.php";
-
-	?>
+	<div class="container">
+<nav class="navbar navbar-expand-lg">
+    <img src="assets/img/time_machine.png">
+    <div class="collapse navbar-collapse" id="navbarText">
+        <div class="navbar-nav mr-auto">
+        </div>
+          <span class="navbar-text" style="color: black">
+              <p class="time">Philippine Standard Time | <span class="date" id="time"></span> |
+                <?php
+                  date_default_timezone_set('Asia/Manila');
+                  echo date('l | F d, Y');
+                ?>
+              </p>
+          </span>
+    </div>
+</nav>
+</div>
+<div class="container2">
+  <ul class="block-menu">
+    <!-- <li><a href="./cart.php">My Cart</a></li> -->
+    <!-- <li><a href="./catalog.php">Catalog</a></li> -->
+    <li><a href="edit_profile.php">Edit Profile</a></li>
+    <li><a href="view_items.php">View Items</a></li>
+    <li><a href="./logout.php">Log Out</a></li>
+    <li><a href="view_account.php">View User Accounts</a></li>
+    <li><a href="add_item.php">Add Item</a></li>
+</ul>
+</div>
+</nav>
 
 	<main class="wrapper">
 
@@ -52,7 +76,7 @@ $items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
 					<div class="card-body">
 						<h5 class="card-title">'.$product_name.'</h5>
 						<div class="col-md-6 offset-md-3">
-						<a href="item.php?id='.$id.'" class="btn btn-primary">View Details</a>
+						<a href="admin_viewitems.php?id='.$id.'" class="btn btn-primary">View Details</a>
 						</div>
 					</div>
 				</div>

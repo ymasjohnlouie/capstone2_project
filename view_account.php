@@ -5,7 +5,7 @@ session_start();
 // Request DB connection
 require './lib/connect.php';
 
-$query = "SELECT r.role_title, u.username, u.address, u.email, u.date_of_birth, u.first_name, u.last_name, u.contact_number, u.gender FROM users u, roles r WHERE u.role_id = r.id AND r.role_title = 'user'";
+$query = "SELECT u.id, r.role_title, u.username, u.address, u.email, u.date_of_birth, u.first_name, u.last_name, u.contact_number, u.gender FROM users u, roles r WHERE u.role_id = r.id AND r.role_title = 'user'";
 $profile = mysqli_query($conn, $query) or die(mysqli_error($conn));	// $conn is from ./lib/connect.php
 
 // Get ID of current item
@@ -47,7 +47,7 @@ include "./partials/head.php";
   <ul class="block-menu">
     <li><a href="./home.php">Home</a></li>
     <li><a href="./cart.php">My Cart</a></li>
-    <li><a href="./profile.php">Profile</a></li>
+    <li><a href="./admin_page.php">Profile</a></li>
     <li><a href="./catalog.php">Catalog</a></li>
     <li><a href="./logout.php">Log Out</a></li>
 </ul>
@@ -56,7 +56,7 @@ include "./partials/head.php";
 
 <main class="wrapper">
 
-  <h1>Profile Page</h1>
+  <h1>User Accounts</h1>
 
   <table>
       <tbody>
@@ -70,8 +70,8 @@ include "./partials/head.php";
               <th>Email</th>
               <th>Gender</th>
               <th>Date of Birth</th>
-              <th>Button 1</th>
-              <th>Button 2</th>
+              <th>Action 1</th>
+              <th>Action 2</th>
             </tr>
         <?php
 
@@ -89,21 +89,22 @@ include "./partials/head.php";
               <td>'.$email.'</td>
               <td>'.$gender.'</td>
               <td>'.$date_of_birth.'</td>
-              <th><a href="activate_profile.php" class="btn btn-primary" role="button">Activate</a></th>
-              <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Deactivate Profile</button></td>
+              <th><a href="admin_activate.php?id='.$id.'" class="btn btn-primary" role="button">Activate</a></th>
+              <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal'.$id.'">Deactivate Profile</button></td>
             </tr>
             
-        <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal fade" id="myModal'.$id.'" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
-                <p>Are you sure you want to deactivate your account?</p>
+                <p>Are you sure you want to deactivate this account?</p>
+                <p>'.$first_name.'</p>
               </div>
               <div class="modal-footer">
-                <a href="admin_deactivate.php" class="btn btn-danger" role="button">Deactivate Profile</a>
+                <a href="admin_deactivate.php?id='.$id.'" class="btn btn-danger" role="button">Deactivate Profile</a>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
               </div>
             </div>

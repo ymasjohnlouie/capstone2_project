@@ -21,7 +21,7 @@
 		foreach($result as $row){
 			$_SESSION['current_user'] = $row['username'];
 		}
-		header("Location: ../home.php");
+		header("Location: ../profile.php");
 	}
 
 	if(mysqli_num_rows($result) > 0 && ($row['status_id'] != 1)){
