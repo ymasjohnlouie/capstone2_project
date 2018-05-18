@@ -48,7 +48,7 @@ $items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
     <li><a href="view_items.php">View Items</a></li>
     <li><a href="./logout.php">Log Out</a></li>
     <li><a href="view_account.php">View User Accounts</a></li>
-    <li><a href="add_item.php">Add Item</a></li>
+    <li><a href="./lib/admin_additem.php">Add Item</a></li>
 </ul>
 </div>
 </nav>
