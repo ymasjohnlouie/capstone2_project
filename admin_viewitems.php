@@ -95,9 +95,26 @@ include "./partials/head.php";
 							<td>'.$description.'</td>
 							<td>'.$price.'</td>
 							<td>'.$name.'</td>
-							<td><a href="delete_item.php?id='.$id.'" class="btn btn-primary" role="button">Delete Item</a></td>
 							<td><a href="update_item.php?id='.$id.'" class="btn btn-primary" role="button">Update Item</a></td>
+							<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal'.$id.'">Delete Item</button></td>
 						</tr>
+
+						<div class="modal fade" id="myModal'.$id.'" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete this item?</p>
+              </div>
+              <div class="modal-footer">
+                <a href="./lib/admin_deleteitem.php?id='.$id.'" class="btn btn-danger" role="button">Delete Item</a>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
 					';
 				}
 				?>

@@ -81,10 +81,10 @@ function getTitle()
 <div class="container2">
   <ul class="block-menu">
     <li><a href="edit_profile.php">Edit Profile</a></li>
-    <li><a href="view_items.php">View Items</a></li>
+    <li><a href="../view_items.php">View Items</a></li>
     <li><a href="../logout.php">Log Out</a></li>
-    <li><a href="view_account.php">View User Accounts</a></li>
-    <li><a href="add_item.php">Add Item</a></li>
+    <li><a href="../view_account.php">View User Accounts</a></li>
+    <li><a href="admin_additem.php">Add Item</a></li>
 </ul>
 </div>
 </nav>
@@ -93,20 +93,10 @@ function getTitle()
 
 		<h1>Add An Item</h1>
 
-		<div class="row">
-			<div class="col-md-6 offset-md-3">
-				<label for="image'.$id.'">Image Path:</label>
-				<?php include "upload.php"; ?>
-				<form action="admin_additem.php" method="POST" enctype="multipart/form-data">
-    				<input type="file" name="file">
-    				<input type="submit" value="Upload Image" name="submit">
-				</form>
-			</div>
-		</div>
 
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
-				<form action="admin_insertitem.php" method="POST">
+				<form action="upload.php" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 					</div>
 					<div class="form-group">
@@ -123,10 +113,11 @@ function getTitle()
 					</div>
 					<div class="form-group">
 						<label for="category">Category ID:</label>
-						<input type="text" class="form-control" name="category" id="category" required>
+						<input type="number" class="form-control" name="category" id="category" required>
 						<label for="category_id">Categories: 1 - Casio | 2 - G-Shock | 3 - Baby-G | 4 - Edifice</label>
+						<input type="file" name="file">
 					</div>
-					<button type="submit" class="btn btn-primary" id="add_item">Add Item</button>
+					<button type="submit" class="btn btn-primary" id="add_item" name="submit">Add Item</button>
 				</form>
 			</div>
 		</div>

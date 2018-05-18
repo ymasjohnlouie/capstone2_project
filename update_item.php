@@ -71,11 +71,12 @@ include "./partials/head.php";
 				<form action="./lib/admin_updateitem.php" method="POST">
 					<div class="form-group">
 						<label for="product_name" hidden readonly>Product Name:</label>
-						<input type="number" class="form-control" name="product_id" id="product_id" value='.$_GET['id'].' hidden readonly>
+						<input type="number" class="form-control" name="product_id" id="product_id" value='.$id.' hidden readonly>
 					</div>
 					<div class="form-group">
 						<label for="image">Image:</label>
 						<img src="'.$image_path.'">
+					<input type="file" name="file">
 					</div>
 					<div class="form-group">
 						<label for="product_name">Product Name:</label>
@@ -89,7 +90,7 @@ include "./partials/head.php";
 						<label for="price">Price:</label>
 						<input type="text" class="form-control" name="price" id="price" value='.$price.'>
 					</div>
-					<button type="submit" class="btn btn-primary" id="update">Update</button>
+					<button type="submit" class="btn btn-primary" id="update" name="submit">Update</button>
 				</form>
 		';
 	}
