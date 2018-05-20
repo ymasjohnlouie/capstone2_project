@@ -5,6 +5,7 @@ function getTitle()
 	echo "My Cart Page";
 }
 
+require "./lib/connect.php";
 include "./partials/head.php";
 
 ?>
@@ -44,33 +45,7 @@ include "./partials/head.php";
 
 		<h1>My Cart Page</h1>
 
-	</main>	<!-- /.wrapper -->
-
-	<?php include "./partials/footer.php"; ?>
-
-<?php include "./partials/foot.php"; ?>
-
-
-
-
-
-
-<?php 
-session_start();
-function get_title(){
-	echo "My Cart";
-} 
-require_once './lib/connect.php';
-require_once './partials/heading.php';
-?>
-<main class="content">
-	<?php
-	require_once './partials/navbar.php';
-	?>
-
-	<!-- Start your project here-->
-
-	<div class="grid cart">
+		<div class="grid cart">
 
 		<?php if(isset($_SESSION['cart'])):?>
 
@@ -154,8 +129,8 @@ require_once './partials/heading.php';
 			</div>
 		</div>
 
-</main>
+	</main>	<!-- /.wrapper -->
 
-<?php 
-require_once './partials/footer.php';
-?>
+	<?php include "./partials/footer.php"; ?>
+
+<?php include "./partials/foot.php"; ?>
