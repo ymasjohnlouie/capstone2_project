@@ -13,12 +13,10 @@ function getTitle()
 include "./partials/head.php";
 
 // Request data from DB
-$items_sql = "SELECT i.id, i.image_path, i.product_name, i.description, i.price, i.category_id FROM items i";
-$items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
-// var_dump($items);	//to test if there's a data received
+$babyg_sql = "SELECT i.id, i.image_path, i.product_name, i.description, i.price, i.category_id FROM items i WHERE i.category_id = 3 ORDER BY price";
+$result = mysqli_query($conn, $babyg_sql);
 
 ?>
-
 
 </head>
 <body>
@@ -34,17 +32,12 @@ $items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<h3>Sort Items By Brand</h3>
+					<h3>Sort Items By Brand:</h3>
 						<a href="casio.php" class="btn btn-primary">Casio</a>
 						<a href="gshock.php" class="btn btn-primary">G-Shock</a>
 						<a href="babyg.php" class="btn btn-primary">Baby-G</a>
 						<a href="edifice.php" class="btn btn-primary">Edifice</a>
 						<a href="catalog.php" class="btn btn-primary">Show All</a>
-				</div>
-				<div class="col-md-6 push-md-6">
-					<h3>Sort Items By Price</h3>
-						<a href="low_to_high.php" class="btn btn-primary">Lowest To Highest</a>
-						<a href="high_to_low.php" class="btn btn-primary">Highest To Lowest</a>
 				</div>
 			</div>
 		</div>
@@ -54,7 +47,7 @@ $items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
 
 		<?php
 
-		foreach ($items as $item) {
+		foreach ($result as $item) {
 			//var_dump($item);
 			// echo $item['product_name'] . '<br>';
 			// echo $item['description'] . '<br>';

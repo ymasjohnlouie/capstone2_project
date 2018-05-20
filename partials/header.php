@@ -5,7 +5,7 @@
         <div class="navbar-nav mr-auto">
         </div>
           <span class="navbar-text" style="color: black">
-              <p class="time">Philippine Standard Time | <span class="date" id="time"></span> |
+              <p class="time"><!-- <i class="fas fa-shopping-cart"></i> -->Philippine Standard Time | <span class="date" id="time"></span> |
                 <?php
                   date_default_timezone_set('Asia/Manila');
                   echo date('l | F d, Y');
@@ -18,7 +18,7 @@
 
 <div class="container2">
   <ul class="block-menu">
-    <!-- <li><a href="./cart.php">My Cart</a></li> -->
+    <li><a href="./cart.php">My Cart<!-- <span class="badge">(0)</span> --></a></li>
     <li><a href="./catalog.php">Catalog</a></li>
     <li><?php
       if (isset($_SESSION['current_user'])){

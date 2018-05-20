@@ -68,7 +68,7 @@ include "./partials/head.php";
 					extract($value);
 
 					echo '
-				<form action="./lib/admin_updateitem.php" method="POST">
+				<form action="./lib/admin_updateitem.php" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="product_name" hidden readonly>Product Name:</label>
 						<input type="number" class="form-control" name="product_id" id="product_id" value='.$id.' hidden readonly>
@@ -76,7 +76,6 @@ include "./partials/head.php";
 					<div class="form-group">
 						<label for="image">Image:</label>
 						<img src="'.$image_path.'">
-					<input type="file" name="file">
 					</div>
 					<div class="form-group">
 						<label for="product_name">Product Name:</label>
@@ -89,6 +88,12 @@ include "./partials/head.php";
 					<div class="form-group">
 						<label for="price">Price:</label>
 						<input type="text" class="form-control" name="price" id="price" value='.$price.'>
+					</div>
+					<div class="form-group">
+						<label for="category">Category ID:</label>
+						<input type="number" class="form-control" name="category" id="category" min="1" max="4" required>
+						<label for="category_id">Categories: 1 - Casio | 2 - G-Shock | 3 - Baby-G | 4 - Edifice</label>
+						<input type="file" name="file">
 					</div>
 					<button type="submit" class="btn btn-primary" id="update" name="submit">Update</button>
 				</form>

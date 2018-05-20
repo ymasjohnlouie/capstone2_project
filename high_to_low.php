@@ -13,12 +13,10 @@ function getTitle()
 include "./partials/head.php";
 
 // Request data from DB
-$items_sql = "SELECT i.id, i.image_path, i.product_name, i.description, i.price, i.category_id FROM items i";
-$items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
-// var_dump($items);	//to test if there's a data received
+$lowtohigh_sql = "SELECT i.id, i.image_path, i.product_name, i.description, i.price, i.category_id FROM items i ORDER BY price DESC";
+$result = mysqli_query($conn, $lowtohigh_sql);
 
 ?>
-
 
 </head>
 <body>
@@ -54,7 +52,7 @@ $items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
 
 		<?php
 
-		foreach ($items as $item) {
+		foreach ($result as $item) {
 			//var_dump($item);
 			// echo $item['product_name'] . '<br>';
 			// echo $item['description'] . '<br>';

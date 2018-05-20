@@ -1,6 +1,6 @@
 /*CSS Variables*/
 :root {
-	--main-background-color: #00FF00;
+	/*--main-background-color: #00FF00;*/
 	--navbar-background-color: #343A40;
 }
 
@@ -30,7 +30,7 @@ td {
 	text-align: center;
 }
 
-img {
+.item_image {
 	width: 50vh;
 	height: 50vh;
 }
@@ -77,6 +77,10 @@ margin: 0 auto;
 
 p {
 	padding-top: 5px;
+}
+
+.card-title {
+	text-align: center;
 }
 
 /* basic menu styles */

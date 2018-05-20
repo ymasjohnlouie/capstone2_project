@@ -8,7 +8,7 @@ require './lib/connect.php';
 // Get ID of current item
 if (isset($_GET['id'])) {
 	$item_id = $_GET['id'];
-	$item_sql = "SELECT i.image_path, i.product_name, i.description, i.price, c.name FROM items i, categories c WHERE i.id='$item_id' AND i.category_id = c.id";
+	$item_sql = "SELECT i.id, i.image_path, i.product_name, i.description, i.price, c.name FROM items i, categories c WHERE i.id='$item_id' AND i.category_id = c.id";
 	$item = mysqli_query($conn, $item_sql) or die(mysqli_error($conn));	// $conn is from ./lib/connect.php
 }
 
@@ -54,11 +54,13 @@ include "./partials/head.php";
 
 					echo '
 						<tr>
-							<th rowspan = 2><img src="'.$image_path.'"></th>
+							<th rowspan = 2><img src="'.$image_path.'" class="item_image"></th>
 							<th>Product Name</th>
 							<th>Description</th>
 							<th>Price</th>
 							<th>Brand</th>
+							<th rowspan = 2><button class="btn btn-primary form-control" onclick="addToCart('.$id.')">Add To Cart</button></th>
+							<th rowspan = 2><input id="itemQuantity'.$id.'" type="number" value="0" min="0"></th>
 						</tr>
 						<tr>
 							<td>'.$product_name.'</td>
@@ -76,4 +78,4 @@ include "./partials/head.php";
 
 	<?php include "./partials/footer.php"; ?>
 
-<?php include "./partials/foot.php"; ?>
+	<?php include "./partials/foot.php"; ?>

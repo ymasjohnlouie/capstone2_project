@@ -14,5 +14,5 @@
 	//update the total quantity of items to be purchased
 	$_SESSION['item_count'] = array_sum($_SESSION['cart']);
 
-	echo 'Cart <strong style="color:red;">( '.$_SESSION['item_count'].' )</strong>';
+	echo '<label style="color: black;">Cart</label> <strong style="color:red;">( '.$_SESSION['item_count'].' )</strong>';
 ?>
