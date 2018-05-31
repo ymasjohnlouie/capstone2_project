@@ -59,6 +59,17 @@ $(document).ready(function(){
 		}
 	});
 
+	// $.each("#itemQuantity, #price").click(function(){
+	// 	var num1 = $('#itemQuantity').val();
+	// 	var num2 = $('#price').val();
+	// 	var num3 = num1 * num2;
+		
+	// 	$("#subtotal").val(num3);
+	// 	$("#cart_item").html(num3);
+
+	// });
+
+
 	//Use an event to check if the field is filled out
 	$("#email, #username, #password, #confirmpw").on("blur", function(){
 		var usermsg = $("#user_avail").html();
@@ -91,3 +102,66 @@ $(document).ready(function(){
 			}
 		});
 	}
+
+	function updateCart(cartId){
+		var total_sum = 0;
+		var id = cartId;
+		var cart_item_quant = $('#itemQuantity' + id).val();
+		var cartItem_price = $('#price' + id).val();
+		var subTotal = $('#subtotal' + id).val();
+		//Updates subtotal of chosen item and Total Price Display
+		$.ajax({
+			url:"./lib/update_subtotal.php",
+			method:"POST",
+			data:{"cartItem_id":id, "cartQty":cart_item_quant, "cartPrice":cartItem_price},
+			success:function(data){
+				$('#subtotal'+id).val(data);
+
+				$('.subtotal').each(function(){
+
+					total_sum += parseInt(this.value);
+				});
+
+				total_sum = Number(total_sum).toLocaleString();
+				
+				$('#total_price').html(total_sum);
+			}
+		});
+
+		//Updates Cart Quantity Display
+		$.ajax({
+			url:"./lib/update_cart_quantity.php",
+			method:"POST",
+			data:{"cartItem_id":id, "cartQty":cart_item_quant, "cartPrice":cartItem_price},
+			success:function(data){
+				$('a[href="./cart.php"]').html(data);
+			}
+		});
+
+		// $.ajax({
+		// 	url:"./lib/update_totalprice.php",
+		// 	method:"POST",
+		// 	data:{"cartItem_id":id, "cartQty":cart_item_quant, "cartPrice":cartItem_price, "sub_total_price":subTotal},
+		// 	success:function(data){
+		// 		$('#total_price').html(data);	//please work this out for total price to change as well
+		// 	}
+		// });
+
+	}
+
+	// function deleteItem(cartId){
+	// 	var id = cartId;
+	// 	var cart_item_quant = $('#itemQuantity' + id).val();
+	// 	var cartItem_price = $('#price' + id).val();
+	// 	var subTotal = $('#subtotal' + id).val();
+
+	// 	$.ajax({
+	// 		url:"./lib/delete_cart.php",
+	// 		method:"GET",
+	// 		data:{"cartItem_id":id, "cartQty":cart_item_quant, "cartPrice":cartItem_price},
+	// 		success:function(data){
+	// 			$('#cartTotalPrice').html("Deleted Cart Item!");
+	// 		}
+	// 	});
+
+	// }

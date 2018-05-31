@@ -18,7 +18,9 @@
 
 <div class="container2">
   <ul class="block-menu">
-    <li><a href="./cart.php">My Cart<!-- <span class="badge">(0)</span> --></a></li>
+    <?php
+    echo '<li><a href="./cart.php">My Cart<span class="badge" id="cart_item"></span></a></li>';
+    ?>
     <li><a href="./catalog.php">Catalog</a></li>
     <li><?php
       if (isset($_SESSION['current_user'])){

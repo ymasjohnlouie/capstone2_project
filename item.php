@@ -57,15 +57,15 @@ include "./partials/head.php";
 							<th rowspan = 2><img src="'.$image_path.'" class="item_image"></th>
 							<th>Product Name</th>
 							<th>Description</th>
-							<th>Price</th>
+							<th>Price(&#8369)</th>
 							<th>Brand</th>
 							<th rowspan = 2><button class="btn btn-primary form-control" onclick="addToCart('.$id.')">Add To Cart</button></th>
-							<th rowspan = 2><input id="itemQuantity'.$id.'" type="number" value="0" min="0"></th>
+							<th rowspan = 2><input id="itemQuantity'.$id.'" type="number" name="quantity" value="0" min="0"></th>
 						</tr>
 						<tr>
 							<td>'.$product_name.'</td>
 							<td>'.$description.'</td>
-							<td>'.$price.'</td>
+							<td>&#8369 '.$english_format_number = number_format($price).'.00</td>
 							<td>'.$name.'</td>
 						</tr>
 					';

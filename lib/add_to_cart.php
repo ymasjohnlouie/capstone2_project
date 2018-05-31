@@ -1,5 +1,6 @@
 <?php
 	session_start();
+
 	$id = $_POST['item_id'];
 	$quantity = $_POST['item_quantity'];
 
@@ -9,7 +10,7 @@
 	//Let a = $_SESSION['cart'] which is an array.
 	//Let a[0] = 10; -> [10], let a[1] = 1; -> [10, 1]
 	// $_SESSION['cart'] = array();
-	//[id] servers as the INDEX of my variable called $_SESSION['cart'] and transformed into an array
+	//[id] serves as the INDEX of my variable called $_SESSION['cart'] and transformed into an array
 	$_SESSION['cart'][$id] = $quantity;
 	//update the total quantity of items to be purchased
 	$_SESSION['item_count'] = array_sum($_SESSION['cart']);

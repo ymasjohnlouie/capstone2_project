@@ -61,7 +61,7 @@ $result = mysqli_query($conn, $casio_sql);
 					<div class="card-body">
 						<div class="col-md-6 offset-md-3">
 						<p class="card-title">'.$product_name.'</p>
-						<p class="card-title">P'.$price.'.00</p>
+						<p class="card-title">&#8369 '.$english_format_number = number_format($price).'.00</p>
 						<a href="item.php?id='.$id.'" class="btn btn-primary">View Details</a>
 						</div>
 					</div>
