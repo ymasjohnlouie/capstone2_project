@@ -7,5 +7,4 @@
 
 	$today = time();
 	$refnumgen = $randid . '-' . $today;
-	echo $refnumgen;
 ?>

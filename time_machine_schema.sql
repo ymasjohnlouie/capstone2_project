@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2018 at 06:54 PM
+-- Generation Time: Jun 06, 2018 at 03:24 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -82,7 +82,7 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `product_name`, `description`, `price`, `category_id`, `image_path`) VALUES
-(23, 'MTP-1335D-1A', 'Elegant', 1895, 1, 'assets/img/uploads/5aff8367a83a23.65066858.jpg'),
+(23, 'MTP-1335D-1A', 'Elegant', 1895, 1, 'assets/img/uploads/5b020cc2359371.90844582.jpg'),
 (25, 'AW-80-1A2', 'Resin Glass / Spherical Glass', 1495, 1, 'assets/img/casio4.jpg'),
 (27, 'GA-110-1B', 'Shock resistant (G-SHOCK)', 4995, 2, 'assets/img/gshock1.jpg'),
 (28, 'G-7900A-7D', 'Auto light switch, selectable illumination duration, afterglow', 3995, 2, 'assets/img/gshock2.jpg'),
@@ -109,24 +109,45 @@ INSERT INTO `items` (`id`, `product_name`, `description`, `price`, `category_id`
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `reference_number` varchar(255) NOT NULL,
-  `status_id` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL DEFAULT '2',
   `user_id` int(11) NOT NULL,
-  `total` int(11) NOT NULL
+  `total` int(11) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `reference_number`, `status_id`, `user_id`, `total`, `order_date`) VALUES
+(175, '0YOMFYFW13ZADWGD3-1528169893', 2, 23, 3790, '2018-06-05 03:38:13'),
+(176, 'SGQDWZ1E2YTWKFYHD-1528179021', 2, 11, 4995, '2018-06-05 06:10:21'),
+(177, 'ZF4NZ14W0IJVBVG9S-1528179406', 2, 11, 1895, '2018-06-05 06:16:46'),
+(178, 'AECSHOKYY2ZG7WG87-1528179799', 2, 11, 4995, '2018-06-05 06:23:19');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders_items`
+-- Table structure for table `order_details`
 --
 
-CREATE TABLE `orders_items` (
+CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `subtotal` int(11) NOT NULL
+  `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `item_id`, `order_id`, `quantity`, `price`) VALUES
+(30, 23, 175, 2, 1895),
+(31, 27, 176, 1, 4995),
+(32, 23, 177, 1, 1895),
+(33, 27, 178, 1, 4995);
 
 -- --------------------------------------------------------
 
@@ -138,6 +159,14 @@ CREATE TABLE `order_status` (
   `id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_status`
+--
+
+INSERT INTO `order_status` (`id`, `description`) VALUES
+(1, 'Shipped'),
+(2, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -184,7 +213,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `address`, `email`, `date_of_birth`, `first_name`, `last_name`, `contact_number`, `gender`, `role_id`, `status_id`) VALUES
-(11, 'testuser', '45c571a156ddcef41351a713bcddee5ba7e95460', 'Valenzuela City', 'test@gmail.com', '01/01/2018', 'Test', 'User', '09999999999', 'Male', 2, 1),
+(11, 'testuser', '45c571a156ddcef41351a713bcddee5ba7e95460', 'Valenzuela', 'johnlouie252007@yahoo.com', '01/01/2018', 'Test', 'User', '09999999999', 'Male', 2, 1),
 (12, 'johnlouie', '3320210533aa72c3a1c92d56cdb32b28f8efa268', 'Toronto', 'louieadmin@gmail.com', '09/26/1988', 'John', 'Ymas', '09951932437', 'Male', 1, 1),
 (14, 'ymasjohnlouie', 'ab0a0770ca47c27c9bbb21a8d4d0976a97430443', '6742 Taylo St., Brgy. Pio Del Pilar, Makati City', 'johnlouieymas@gmail.com', '09/13/1988', 'Louie John', 'Maquilan', '09216359849', 'Male', 2, 1),
 (20, 'testagain', '796b9375baa0afc8e34f1f2475c4666ca6dee21e', 'Baguio City', 'testagain@mail.com', '09/11/2001', 'Test', 'Again', '09991234567', 'Female', 2, 1),
@@ -225,9 +254,9 @@ ALTER TABLE `orders`
   ADD KEY `orders_fk1` (`user_id`);
 
 --
--- Indexes for table `orders_items`
+-- Indexes for table `order_details`
 --
-ALTER TABLE `orders_items`
+ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `orders_items_fk0` (`item_id`),
   ADD KEY `orders_items_fk1` (`order_id`);
@@ -279,19 +308,19 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
--- AUTO_INCREMENT for table `orders_items`
+-- AUTO_INCREMENT for table `order_details`
 --
-ALTER TABLE `orders_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `order_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `order_status`
 --
 ALTER TABLE `order_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -323,9 +352,9 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `orders_fk1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `orders_items`
+-- Constraints for table `order_details`
 --
-ALTER TABLE `orders_items`
+ALTER TABLE `order_details`
   ADD CONSTRAINT `orders_items_fk0` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
   ADD CONSTRAINT `orders_items_fk1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 

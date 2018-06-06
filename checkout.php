@@ -10,8 +10,9 @@ if (isset($_SESSION['current_user']) && !empty($_SESSION['cart'])){
 
 	$login_name = $_SESSION['current_user'];
 
-	$query = "SELECT r.role_title, u.username, u.address, u.email, u.date_of_birth, u.first_name, u.last_name, u.contact_number, u.gender FROM users u, roles r WHERE u.role_id = r.id AND u.username = '$login_name'";
+	$query = "SELECT r.role_title, u.username, u.address, u.email, u.id, u.date_of_birth, u.first_name, u.last_name, u.contact_number, u.gender FROM users u, roles r WHERE u.role_id = r.id AND u.username = '$login_name'";
 $profile_checkout = mysqli_query($conn, $query) or die(mysqli_error($conn));	// $conn is from ./lib/connect.php
+
 
 // Get ID of current item
 if (isset($_GET['id'])) {
@@ -20,7 +21,6 @@ if (isset($_GET['id'])) {
 }
 
 if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-
 	$total = 0;
 	$i = 1;
 	foreach($_SESSION['cart'] as $row_key => $row_value){
@@ -28,7 +28,6 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
 		$item_Quantity = $row_value;
 		$total = $_SESSION['totalitemprice'];
 		$new_total = $english_format_number = number_format($total);
-
 
 		$cart_item_sql = "SELECT i.image_path, i.product_name, i.price, c.name FROM items i, categories c WHERE i.id = '$item_chosen_id' AND i.category_id = c.id";
 		$cartitem = mysqli_query($conn, $cart_item_sql) or die(mysqli_error($conn));
@@ -140,6 +139,7 @@ include "./partials/head.php";
 		$item_Quantity = $row_value;
 		$total = $_SESSION['totalitemprice'];
 		$new_total = $english_format_number = number_format($total);
+		$_SESSION['newtotalprice'] = $new_total;
 
 
 		$cart_item_sql = "SELECT i.image_path, i.product_name, i.price, c.name FROM items i, categories c WHERE i.id = '$item_chosen_id' AND i.category_id = c.id";
@@ -151,7 +151,6 @@ include "./partials/head.php";
 			$subtotal = $price * $item_Quantity;
 			$new_subtotal = $english_format_number = number_format($subtotal);
 			$new_price = $english_format_number = number_format($price);
-
 
 			echo '
 			<tr>
@@ -168,15 +167,14 @@ include "./partials/head.php";
 }
 
 	if (isset($_SESSION['current_user']) && !empty($_SESSION['cart'])){
-
 		foreach ($profile_checkout as $column_user) {
-
 			extract($column_user);
+			$_SESSION['current_userid'] = $id;
 			echo '
 			<div class="row">
 					<div class="col-md-6">
 					<h1>Contact Information</h1>
-					<form action="confirmation_page" method="POST">
+					<form action="confirmation_page.php" method="POST">
 						<div class="form-group">
 							<label for="first_name">First Name:</label>
 								<input type="text" class="form-control" name="first_name" id="first_name" value='.$first_name.' required>
@@ -201,17 +199,28 @@ include "./partials/head.php";
 					</form>
 					</div>
 					<div class="col-md-6">
-						<h1>Order Guidelines</h1>
+						<h1>Payment Guidelines</h1>
+						<ul>
+							<li>Cash on Delivery</li>
+							<li>Thru Bank Deposit
+								<ul>
+									<li>BPI (Bank of the Philippine Islands) Account Number 3399468107</li>
+									<li>PSBank (Philippine Savings Bank) Account Number 001-11122127-9</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
 			</div>
 			';
 		} 
 	} if (isset($_SESSION['current_user']) && empty($_SESSION['cart'])){
-		echo "Shop First!";
+		echo "<a href='catalog.php'>Go To Shopping</a>";
+		$total = 0;
 	} if(empty($_SESSION['current_user']) && !empty($_SESSION['cart'])){
 		echo "You must " . "<a href='login.php'>Log In</a>" . " first or " . "<a href='register.php'>Register</a>" . " to proceed in checkout.";
 	} if(empty($_SESSION['current_user']) && empty($_SESSION['cart'])){
-		echo "Sorry";
+		echo "<a href='catalog.php'>Go To Shopping</a>";
+		$total = 0;
 	}
 	
 	?>
@@ -220,8 +229,9 @@ include "./partials/head.php";
 		</tbody>
 	</table>
 		<div class="form-group">
-			<label for="total_price"><strong>Total Price: &#8369 <?php echo $new_total ?></strong></label>
+			<label for="total_price"><strong>Total Price: &#8369 <?php echo $english_format_number = number_format($total).'.00'; ?></strong></label>
 		</div>
+
 
 </main>	<!-- /.wrapper -->
 

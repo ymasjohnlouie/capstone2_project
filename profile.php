@@ -2,12 +2,13 @@
 
 session_start();
 
-$login_name = $_SESSION['current_user'];
 // Request DB connection
 require './lib/connect.php';
 
-$query = "SELECT r.role_title, u.username, u.address, u.email, u.date_of_birth, u.first_name, u.last_name, u.contact_number, u.gender FROM users u, roles r WHERE u.role_id = r.id AND u.username = '$login_name'";
+$login_name = $_SESSION['current_user'];
+$query = "SELECT r.role_title, u.id, u.username, u.address, u.email, u.date_of_birth, u.first_name, u.last_name, u.contact_number, u.gender FROM users u, roles r WHERE u.role_id = r.id AND u.username = '$login_name'";
 $profile = mysqli_query($conn, $query) or die(mysqli_error($conn));	// $conn is from ./lib/connect.php
+
 
 // Get ID of current item
 if (isset($_GET['id'])) {
@@ -63,7 +64,6 @@ include "./partials/head.php";
 	<table>
 			<tbody>
 				<?php
-
 				foreach ($profile as $column) {
 
 					extract($column);
@@ -94,8 +94,10 @@ include "./partials/head.php";
 						</tr>
 			<div class="buttons">
 			</div>
+
 					';
-				} else {
+				} 
+				else {
 					echo '
 						<tr>
 							<th>First Name</th>
@@ -136,16 +138,86 @@ include "./partials/head.php";
 			        </div>
 			      </div>
 			    </div>
-			  </div>  
+			  </div>
 				
 				';
+
 				}
 			}
+			
 				?>
 			</tbody>
 		</table>
+		<br>
+				<h1>Transaction History</h1>
+			<table>
+			<tbody>
+		<?php
+
+		echo '
+			<tr>
+				<th>Reference Number</th>
+				<th>Total(&#8369)</th>
+				<th>Order Date</th>
+				<th>Status</th>
+			</tr>
+		';
+
+		if(isset($_SESSION['current_user'])){
+			$current_user = $_SESSION['current_user'];
+			$select_qry = "SELECT id FROM users WHERE username = '$current_user'";
+			$resulta = mysqli_query($conn, $select_qry);
+
+			foreach($resulta as $result){
+				extract($result);
+
+				$current_user_id = $result;
+				$new_select_qry = "SELECT status_id, reference_number, total, order_date FROM orders WHERE user_id = '$id'";
+				$res_new_select = mysqli_query($conn, $new_select_qry);
+
+				foreach($res_new_select as $select_new){
+					extract($select_new);
+
+				$id_stat = $status_id;
+				$status_qry = "SELECT description FROM order_status WHERE id = '$id_stat'";
+				$res_stat = mysqli_query($conn, $status_qry);
+
+					foreach($res_stat as $new_stat){
+						extract($new_stat);
+						
+						echo '
+						<tr>
+							<td>'.$reference_number.'</td>
+							<td>'.$total.'.00</td>
+							<td>'.$order_date.'</td>
+							<td>'.$description.'</td>
+						</tr>
+						';
+					}
+				}
+			}
+		}
+		?>
+		</tbody>
+		</table>
+
+		<?php
+		// if(($_SESSION['current_user']) == "johnlouie"){
+		// 	$admin_user = $_SESSION['current_user'];
+		// 	$admin_query = "SELECT r.role_title, u.id, u.username, u.first_name, u.last_name FROM users u, roles r WHERE u.username = '$admin_user'";
+		// 	$res_adm_qry = mysqli_query($conn, $admin_query);
+		// 	// var_dump($res_adm_qry);
+
+		// 	foreach($res_adm_qry as $adm_qry){
+		// 		extract($adm_qry);
+		// 		var_dump($adm_qry);
+		// 	}
+			
+		// }
+		?>
 
 	</main>	<!-- /.wrapper -->
+
 
 	<?php include "./partials/footer.php"; ?>
 

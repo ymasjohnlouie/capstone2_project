@@ -6,4 +6,8 @@
 		unset($_SESSION['cart'][$id]);
 		header('location:../cart.php');
 	}
+
+	// if($_SESSION['item_count'] == NULL){
+	// 	unset($_SESSION['cart']);
+	// }
 ?>

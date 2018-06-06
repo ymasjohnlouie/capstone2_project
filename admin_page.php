@@ -60,7 +60,7 @@ include "./partials/head.php";
 	<main class="wrapper">
 
 	<?php
-		echo "<h1>Welcome, " .$_SESSION['current_user'] . "</h1>";
+		echo "<h1>Welcome, admin " .$_SESSION['current_user'] . "</h1>";
 	?>
 
 	<table>
@@ -145,6 +145,58 @@ include "./partials/head.php";
 				}
 			}
 				?>
+			</tbody>
+		</table>
+		<br>
+
+	<h1>User's Transaction History</h1>
+		<table>
+			<tbody>
+		<?php
+
+		echo '
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Reference Number</th>
+				<th>Total(&#8369)</th>
+				<th>Order Date</th>
+				<th>Status</th>
+			</tr>
+		';
+
+			$select_users_qry = "SELECT id, first_name, last_name FROM users WHERE role_id = 2";
+			$res_users_qry = mysqli_query($conn, $select_users_qry);
+
+			foreach($res_users_qry as $users_qry){
+				extract($users_qry);
+
+			$select_qry = "SELECT status_id, reference_number, total, order_date FROM orders WHERE user_id = '$id'";
+			$res_select_qry = mysqli_query($conn, $select_qry);
+
+				foreach($res_select_qry as $new_select){
+					extract($new_select);
+
+			$status_qr = "SELECT description FROM order_status WHERE id = '$status_id'";
+			$res_status_qr = mysqli_query($conn, $status_qr);
+
+					foreach($res_status_qr as $new_status){
+						extract($new_status);
+						
+						echo '
+						<tr>
+							<td>'.$first_name.'</td>
+							<td>'.$last_name.'</td>
+							<td>'.$reference_number.'</td>
+							<td>'.$total.'.00</td>
+							<td>'.$order_date.'</td>
+							<td>'.$description.'</td>
+						</tr>
+						';
+					}
+				}
+			}
+		?>
 			</tbody>
 		</table>
 

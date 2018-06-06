@@ -60,7 +60,7 @@ include "./partials/head.php";
 							<th>Price(&#8369)</th>
 							<th>Brand</th>
 							<th rowspan = 2><button class="btn btn-primary form-control" onclick="addToCart('.$id.')">Add To Cart</button></th>
-							<th rowspan = 2><input id="itemQuantity'.$id.'" type="number" name="quantity" value="0" min="0"></th>
+							<th rowspan = 2><input id="itemQuantity'.$id.'" type="number" name="quantity" value="0" min="1"></th>
 						</tr>
 						<tr>
 							<td>'.$product_name.'</td>

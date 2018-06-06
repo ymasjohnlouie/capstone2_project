@@ -93,7 +93,8 @@ p {
 }
 
 .title {
-	font-family: 'Orbitron', sans-serif;
+	/*font-family: 'Orbitron', sans-serif;*/
+	/*font-family: 'Raleway', sans-serif;*/
 	font-size: 36px;
 	color: white;
 	background: linear-gradient(to bottom right, black, white);
@@ -101,7 +102,8 @@ p {
 }
 
 .time {
-	font-family: 'Passion One', Arial, sans-serif;
+	/*font-family: 'Passion One', Arial, sans-serif;*/
+	/*font-family: 'Raleway', sans-serif;*/
 	font-size: 20px;
 	border: 1px solid white;
 	background: black;

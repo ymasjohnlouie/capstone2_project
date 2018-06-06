@@ -149,19 +149,24 @@ $(document).ready(function(){
 
 	}
 
-	// function deleteItem(cartId){
-	// 	var id = cartId;
-	// 	var cart_item_quant = $('#itemQuantity' + id).val();
-	// 	var cartItem_price = $('#price' + id).val();
-	// 	var subTotal = $('#subtotal' + id).val();
+	function removeFromCart(cartId){
+		var id = cartId;
+		var cart_item_quant = $('#itemQuantity' + id).val();
+		var cart_total = $('#total_price').html();
+		// var cartItem_price = $('#price' + id).val();
+		// var subTotal = $('#subtotal' + id).val();
 
-	// 	$.ajax({
-	// 		url:"./lib/delete_cart.php",
-	// 		method:"GET",
-	// 		data:{"cartItem_id":id, "cartQty":cart_item_quant, "cartPrice":cartItem_price},
-	// 		success:function(data){
-	// 			$('#cartTotalPrice').html("Deleted Cart Item!");
-	// 		}
-	// 	});
+		$.ajax({
+			url:"./lib/delete_cart.php",
+			method:"POST",
+			data:{"cartItem_id":id},
+			success:function(data){
+				$('#cartTotalPrice').html("Deleted Cart Item!");
 
-	// }
+				if(data == 0){
+					$('#cart-tbl').hide();
+				}
+			}
+		});
+
+	}
