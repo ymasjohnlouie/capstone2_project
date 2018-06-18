@@ -2,8 +2,6 @@
 
 session_start();
 
-// $_SESSION['current_user'] = 'admin';
-
 function getTitle()
 {
 	echo "Index Page";
@@ -17,52 +15,32 @@ include "./partials/head.php";
 </head>
 <body>
 
-	<?php
-
-	include "./partials/header.php";
-
-	?>
+<?php include "./partials/header.php"; ?>
 
 	<main class="wrapper">
-		<div id="demo" class="carousel slide" data-ride="carousel">
-		  <!-- Indicators -->
-		  <ul class="carousel-indicators">
-		    <li data-target="#demo" data-slide-to="0" class="active"></li>
-		    <li data-target="#demo" data-slide-to="1"></li>
-		    <li data-target="#demo" data-slide-to="2"></li>
-		  </ul>
-
-		  <!-- The slideshow -->
-		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img src="assets/img/watch.jpg">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="assets/img/watch1.jpg">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="assets/img/watch2.jpg">
-		    </div>
-		  </div>
-
-		  <!-- Left and right controls -->
-		  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-		    <span class="carousel-control-prev-icon"></span>
-		  </a>
-		  <a class="carousel-control-next" href="#demo" data-slide="next">
-		    <span class="carousel-control-next-icon"></span>
-		  </a>
+		<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+  			<div class="carousel-inner">
+    			<div class="carousel-item active">
+      				<img class="d-block w-100" src="assets/img/watch.jpg" alt="First slide">
+    			</div>
+    			<div class="carousel-item">
+      				<img class="d-block w-100" src="assets/img/watch1.jpg" alt="Second slide">
+    			</div>
+    			<div class="carousel-item">
+      				<img class="d-block w-100" src="assets/img/watch2.jpg" alt="Third slide">
+    			</div>
+  			</div>
+  			<a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+    			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    			<span class="sr-only">Previous</span>
+  			</a>
+  			<a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+    			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+    			<span class="sr-only">Next</span>
+  			</a>
 		</div>
 	</main>	<!-- /.wrapper -->
 
-	<?php
+<?php include "./partials/footer.php"; ?>
 
-		include "./partials/footer.php";
-
-	?>
-
-<?php
-
-include "./partials/foot.php";
-
-?>
+<?php include "./partials/foot.php"; ?>

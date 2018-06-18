@@ -46,13 +46,40 @@ include "./partials/head.php";
 </div>
 <div class="container2">
   <ul class="block-menu">
-    <!-- <li><a href="./cart.php">My Cart</a></li> -->
-    <!-- <li><a href="./catalog.php">Catalog</a></li> -->
     <li><a href="edit_profile.php">Edit Profile</a></li>
-    <li><a href="view_items.php">View Items</a></li>
+    <li><?php
+      if (($_SESSION['current_user']) == "johnlouie"){
+        echo '
+          <ul class="block-menu">
+          <li>
+            <a href="view_items.php">View Items</a>
+          </li>
+          <li>
+            <a href="view_account.php">View User Accounts</a>
+          </li>
+          <li>
+            <a href="add_item.php">Add Item</a>
+          </li>
+          </ul>
+        ';
+      } else {
+        echo '
+          <ul class="block-menu">
+          <li>
+            <a href="profile.php">Profile</a>
+          </li>
+          <li>
+            <a href="./cart.php">My Cart</a>
+          </li>
+          <li>
+           	<a href="./catalog.php">Catalog</a>
+          </li>
+          </ul>
+        ';
+      }
+      ?>
+  </li>
     <li><a href="./logout.php">Log Out</a></li>
-    <li><a href="view_account.php">View User Accounts</a></li>
-    <li><a href="add_item.php">Add Item</a></li>
 </ul>
 </div>
 </nav>

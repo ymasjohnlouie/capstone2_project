@@ -46,13 +46,11 @@ include "./partials/head.php";
 </div>
 <div class="container2">
   <ul class="block-menu">
-    <!-- <li><a href="./cart.php">My Cart</a></li> -->
-    <!-- <li><a href="./catalog.php">Catalog</a></li> -->
     <li><a href="edit_profile.php">Edit Profile</a></li>
     <li><a href="view_items.php">View Items</a></li>
-    <li><a href="./logout.php">Log Out</a></li>
     <li><a href="view_account.php">View User Accounts</a></li>
     <li><a href="./lib/admin_additem.php">Add Item</a></li>
+    <li><a href="./logout.php">Log Out</a></li>
 </ul>
 </div>
 </nav>
@@ -83,6 +81,7 @@ include "./partials/head.php";
 							<th>Email</th>
 							<th>Gender</th>
 							<th>Date of Birth</th>
+							<th>Action To Do</th>
 						</tr>
 						<tr>
 							<td>'.$first_name.'</td>
@@ -94,6 +93,7 @@ include "./partials/head.php";
 							<td>'.$email.'</td>
 							<td>'.$gender.'</td>
 							<td>'.$date_of_birth.'</td>
+							<td><a href="password_reset.php" class="btn btn-success" role="button">Change Password</a></td>
 						</tr>
 			<div class="buttons">
 			</div>
@@ -112,6 +112,7 @@ include "./partials/head.php";
 							<th>Date of Birth</th>
 							<th colspan = 2>Actions To Do</td>
 						</tr>
+						<tr>
 							<td>'.$first_name.'</td>
 							<td>'.$last_name.'</td>
 							<td>'.$contact_number.'</td>
@@ -123,7 +124,7 @@ include "./partials/head.php";
 							<td>'.$date_of_birth.'</td>
 							<td><a href="edit_profile.php" class="btn btn-primary" role="button">Edit Profile</a></td>
 							<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Deactivate Profile</button></td>
-						<tr>
+						</tr>
 			  <div class="modal fade" id="myModal" role="dialog">
 			    <div class="modal-dialog">
 			      <div class="modal-content">
@@ -162,6 +163,7 @@ include "./partials/head.php";
 				<th>Total(&#8369)</th>
 				<th>Order Date</th>
 				<th>Status</th>
+				<th>Action To Do</td>
 			</tr>
 		';
 
@@ -171,7 +173,7 @@ include "./partials/head.php";
 			foreach($res_users_qry as $users_qry){
 				extract($users_qry);
 
-			$select_qry = "SELECT status_id, reference_number, total, order_date FROM orders WHERE user_id = '$id'";
+			$select_qry = "SELECT id, status_id, reference_number, total, order_date FROM orders WHERE user_id = '$id'";
 			$res_select_qry = mysqli_query($conn, $select_qry);
 
 				foreach($res_select_qry as $new_select){
@@ -182,7 +184,6 @@ include "./partials/head.php";
 
 					foreach($res_status_qr as $new_status){
 						extract($new_status);
-						
 						echo '
 						<tr>
 							<td>'.$first_name.'</td>
@@ -190,9 +191,28 @@ include "./partials/head.php";
 							<td>'.$reference_number.'</td>
 							<td>'.$total.'.00</td>
 							<td>'.$order_date.'</td>
-							<td>'.$description.'</td>
+							<td id="description">'.$description.'</td>
+							<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal'.$id.'">Change Order Status</button></td>
 						</tr>
+						<div class="modal fade" id="myModal'.$id.'" role="dialog">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			        	<h5 class="modal-title">Change Order Status</h5>
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        </div>
+			        <div class="modal-body">
+			          <p>Are you sure you want to change the status of this order?</p>
+			        </div>
+			        <div class="modal-footer">
+			          <a href="order_status.php?id='.$id.'" class="btn btn-success" role="button">Confirm</a>
+			          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
 						';
+
 					}
 				}
 			}

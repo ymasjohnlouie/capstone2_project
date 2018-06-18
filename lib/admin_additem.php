@@ -80,11 +80,11 @@ function getTitle()
 </div>
 <div class="container2">
   <ul class="block-menu">
+    <li><a href="admin_additem.php">Add Item</a></li>
     <li><a href="edit_profile.php">Edit Profile</a></li>
     <li><a href="../view_items.php">View Items</a></li>
-    <li><a href="../logout.php">Log Out</a></li>
     <li><a href="../view_account.php">View User Accounts</a></li>
-    <li><a href="admin_additem.php">Add Item</a></li>
+    <li><a href="../logout.php">Log Out</a></li>
 </ul>
 </div>
 </nav>
@@ -113,8 +113,12 @@ function getTitle()
 					</div>
 					<div class="form-group">
 						<label for="category">Category ID:</label>
-						<input type="number" class="form-control" name="category" id="category" required>
-						<label for="category_id">Categories: 1 - Casio | 2 - G-Shock | 3 - Baby-G | 4 - Edifice</label>
+						<select class="form-control" name="category" id="category" required>
+						<option>Choose Category</option>
+						<option>1 - Casio</option>
+						<option>2 - G-Shock</option>
+						<option>3 - Baby-G</option>
+						<option>4 - Edifice</option>
 						<input type="file" name="file">
 					</div>
 					<button type="submit" class="btn btn-primary" id="add_item" name="submit">Add Item</button>

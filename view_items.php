@@ -14,8 +14,7 @@ include "./partials/head.php";
 
 // Request data from DB
 $items_sql = "SELECT * FROM items";
-$items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
-//var_dump($items);	//to test if there's a data received
+$items = mysqli_query($conn, $items_sql);
 
 ?>
 
@@ -42,13 +41,12 @@ $items = mysqli_query($conn, $items_sql);	// $conn is from ./lib/connect.php
 </div>
 <div class="container2">
   <ul class="block-menu">
-    <!-- <li><a href="./cart.php">My Cart</a></li> -->
-    <!-- <li><a href="./catalog.php">Catalog</a></li> -->
     <li><a href="edit_profile.php">Edit Profile</a></li>
+    <li><a href="admin_page.php">Profile</a></li>
     <li><a href="view_items.php">View Items</a></li>
-    <li><a href="./logout.php">Log Out</a></li>
     <li><a href="view_account.php">View User Accounts</a></li>
     <li><a href="./lib/admin_additem.php">Add Item</a></li>
+    <li><a href="./logout.php">Log Out</a></li>
 </ul>
 </div>
 </nav>

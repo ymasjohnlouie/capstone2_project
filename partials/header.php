@@ -5,7 +5,7 @@
         <div class="navbar-nav mr-auto">
         </div>
           <span class="navbar-text" style="color: black">
-              <p class="time"><!-- <i class="fas fa-shopping-cart"></i> -->Philippine Standard Time | <span class="date" id="time"></span> |
+              <p class="time">Philippine Standard Time | <span class="date" id="time"></span> |
                 <?php
                   date_default_timezone_set('Asia/Manila');
                   echo date('l | F d, Y');
@@ -27,7 +27,7 @@
         echo '
           <ul class="block-menu">
           <li>
-            <a href="./logout.php">Log Out</a>
+            <a class="nav-link" href="./home.php">Home</a>
           </li>
           </ul>
         ';
@@ -51,7 +51,7 @@
           echo '
             <ul class="block-menu">
             <li class="nav-item">
-              <a class="nav-link" href="./home.php">Home</a>
+              <a href="./profile.php">Profile</a>
             </li>
             </ul>
           ';
@@ -64,7 +64,7 @@
           echo '
             <ul class="block-menu">
             <li>
-              <a href="./profile.php">Profile</a>
+              <a href="./logout.php">Log Out</a>
             </li>
             </ul>
           ';

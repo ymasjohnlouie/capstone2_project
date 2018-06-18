@@ -8,7 +8,6 @@ $('.block-menu').find('a').each(function(){
 
 });
 
-// console.log('custom script loaded');
 //Checks if email exists
 $(document).ready(function(){
 	$("#register").prop("disabled", true);
@@ -58,18 +57,7 @@ $(document).ready(function(){
 			$("#match").html("Password mismatched");
 		}
 	});
-
-	// $.each("#itemQuantity, #price").click(function(){
-	// 	var num1 = $('#itemQuantity').val();
-	// 	var num2 = $('#price').val();
-	// 	var num3 = num1 * num2;
-		
-	// 	$("#subtotal").val(num3);
-	// 	$("#cart_item").html(num3);
-
-	// });
-
-
+	
 	//Use an event to check if the field is filled out
 	$("#email, #username, #password, #confirmpw").on("blur", function(){
 		var usermsg = $("#user_avail").html();
@@ -124,7 +112,7 @@ $(document).ready(function(){
 
 				total_sum = Number(total_sum).toLocaleString();
 				
-				$('#total_price').html(total_sum);
+				$('.total_price').html(total_sum);
 			}
 		});
 
@@ -149,10 +137,10 @@ $(document).ready(function(){
 
 	}
 
-	function removeFromCart(cartId){
-		var id = cartId;
+	function removeFromCart(itemId){
+		var id = itemId;
 		var cart_item_quant = $('#itemQuantity' + id).val();
-		var cart_total = $('#total_price').html();
+		// var cart_total = $('.total_price').html();
 		// var cartItem_price = $('#price' + id).val();
 		// var subTotal = $('#subtotal' + id).val();
 
@@ -161,10 +149,11 @@ $(document).ready(function(){
 			method:"POST",
 			data:{"cartItem_id":id},
 			success:function(data){
-				$('#cartTotalPrice').html("Deleted Cart Item!");
+				$('.total_price').html("Deleted Cart Item!");
 
+				console.log(data);
 				if(data == 0){
-					$('#cart-tbl').hide();
+					$('.cart-tbl').hide();
 				}
 			}
 		});

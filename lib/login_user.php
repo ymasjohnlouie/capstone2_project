@@ -13,7 +13,7 @@
 		}
 		header("Location: ../admin_page.php");
 	} else {
-		$_SESSION['msg'] = "Invalid credentials";
+		$_SESSION['msg'] = "Invalid Credentials";
 		header("location: ../login.php");
 	}
 

@@ -49,8 +49,8 @@ include "./partials/head.php";
   <ul class="block-menu">
     <li><a href="./cart.php">My Cart</a></li>
     <li><a href="./catalog.php">Catalog</a></li>
-    <li><a href="./logout.php">Log Out</a></li>
     <li><a href="profile.php">Profile</a></li>
+    <li><a href="./logout.php">Log Out</a></li>
 </ul>
 </div>
 </nav>
@@ -109,7 +109,7 @@ include "./partials/head.php";
 							<th>Email</th>
 							<th>Gender</th>
 							<th>Date of Birth</th>
-							<th colspan = 2>Actions To Do</td>
+							<th colspan = 3>Actions To Do</td>
 						</tr>
 							<td>'.$first_name.'</td>
 							<td>'.$last_name.'</td>
@@ -121,12 +121,14 @@ include "./partials/head.php";
 							<td>'.$gender.'</td>
 							<td>'.$date_of_birth.'</td>
 							<td><a href="edit_profile.php" class="btn btn-primary" role="button">Edit Profile</a></td>
+							<td><a href="password_reset.php" class="btn btn-success" role="button">Change Password</a></td>
 							<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Deactivate Profile</button></td>
 						<tr>
 			  <div class="modal fade" id="myModal" role="dialog">
 			    <div class="modal-dialog">
 			      <div class="modal-content">
 			        <div class="modal-header">
+			        	<h5 class="modal-title">Account Deactivation</h5>
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			        </div>
 			        <div class="modal-body">

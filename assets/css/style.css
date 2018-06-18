@@ -35,6 +35,20 @@ td {
 	height: 50vh;
 }
 
+.media1 {
+    display: inline-block;
+    -webkit-box-reflect: below 0px
+    -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(250, 250, 250, 0.1)));
+}
+
+i {
+    padding-right: 5px;
+}
+
+.media1 {
+    padding-right: 10px;
+}
+
 h5 {
 	text-align: center;
 }
