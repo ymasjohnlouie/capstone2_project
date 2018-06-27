@@ -82,6 +82,6 @@ unset($_SESSION['cart']);
 unset($_SESSION['subtotal']);
 unset($_SESSION['total_amount']);
 
-header("location: confirmation_page2.php");
+header('Location: confirmation_page2.php');
 
 ?>

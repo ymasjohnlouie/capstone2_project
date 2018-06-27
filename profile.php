@@ -202,6 +202,7 @@ include "./partials/head.php";
 		?>
 		</tbody>
 		</table>
+		<br>
 
 		<?php
 		// if(($_SESSION['current_user']) == "johnlouie"){

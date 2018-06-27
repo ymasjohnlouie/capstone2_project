@@ -66,19 +66,6 @@ include "./partials/head.php";
 		</li>
 		<li>
 			<?php
-			if (isset($_SESSION['current_user'])){
-				echo '
-				<ul class="block-menu">
-				<li>
-				<a href="./logout.php">Log Out</a>
-				</li>
-				</ul>
-				';
-			}
-			?>
-		</li>
-		<li>
-			<?php
 			if (isset($_SESSION['cart'])){
 				echo '
 				<ul class="block-menu">
@@ -87,6 +74,19 @@ include "./partials/head.php";
 				</li>
 				<li>
 				<a href="./lib/clear_cart.php">Clear Cart</a>
+				</li>
+				</ul>
+				';
+			}
+			?>
+		</li>
+		<li>
+			<?php
+			if (isset($_SESSION['current_user'])){
+				echo '
+				<ul class="block-menu">
+				<li>
+				<a href="./logout.php">Log Out</a>
 				</li>
 				</ul>
 				';

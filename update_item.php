@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 
 function getTitle()
 {
-	echo "Edit Profile Page";
+	echo "Edit Item Page";
 }
 
 include "./partials/head.php";
@@ -48,9 +48,9 @@ include "./partials/head.php";
     <!-- <li><a href="./catalog.php">Catalog</a></li> -->
     <li><a href="edit_profile.php">Edit Profile</a></li>
     <li><a href="view_items.php">View Items</a></li>
-    <li><a href="./logout.php">Log Out</a></li>
     <li><a href="view_account.php">View User Accounts</a></li>
     <li><a href="add_item.php">Add Item</a></li>
+    <li><a href="./logout.php">Log Out</a></li>
 </ul>
 </div>
 </nav>
